@@ -26,12 +26,16 @@ installer() {
 
 
 configure_system() {
+	dir=$(pwd)
 	git config --global user.email ubunknown1@protonmail.com
 	git config --global user.name ubunknown1
 	
+	# home files
+	rm ~/.aliases
+	rm ~/.bashrc
+	cp $dir/home-files/.aliases ~/
+	cp $dir/home-files/.bashrc ~/
 	# setup GPG
-	dir=$(pwd)
-	echo "$dir/ssh-"
 	gpg --import $dir/public.gpg
 	gpg --import $dir/private.gpg
 	gpg --import-ownertrust $dir/trust.gpg
@@ -40,7 +44,7 @@ $ 	chmod 600 ~/.ssh/id_rsa
 $	chmod 644 ~/.ssh/id_rsa.pub
 	
 	# setup SSH
-	
+	cp /media/ko/private1/private-files/ubuntu-secrets/.ssh/ ~/
 	
 	# enable ssh firewall
 	sudo ufw allow ssh
