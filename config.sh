@@ -28,6 +28,10 @@ installer() {
 
 
 configure_system() {
+	gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
+	sudo dpkg --configure -a
+	sudo apt install unattended-upgrades
+	sudo dpkg-reconfigure --priority=low unattended-upgrades
 	dir=$(pwd)
 	git config --global user.email ubunknown1@protonmail.com
 	git config --global user.name ubunknown1
@@ -46,16 +50,17 @@ configure_system() {
 	cp $dir/home-files/.aliases ~/
 	cp $dir/home-files/.bashrc ~/
 	# setup GPG
-	gpg --import /media/ko/private2/private-files/ubuntu-secrets/gpg-key/public.gpg
-	gpg --import /media/ko/private2/private-files/ubuntu-secrets/gpg-key/private.gpg
-	gpg --import-ownertrust /media/ko/private2/private-files/ubuntu-secrets/gpg-key/trust.gpg
+	gpg --import /media/ko/private/private-files/ubuntu-secrets/gpg-key/public.gpg
+	gpg --import /media/ko/private/private-files/ubuntu-secrets/gpg-key/private.gpg
+	gpg --import-ownertrust /media/ko/private/private-files/ubuntu-secrets/gpg-key/trust.gpg
 	gpg --list-secret-keys --keyid-format LONG
- 	chmod 600 ~/.ssh/id_rsa
-	chmod 644 ~/.ssh/id_rsa.pub
 	
 	# setup SSH
-	cp -r /media/ko/private2/private-files/ubuntu-secrets/.ssh $HOME
+	cp -r /media/ko/private/private-files/ubuntu-secrets/.ssh $HOME
 	ssh-add
+        chmod 600 ~/.ssh/id_rsa
+        chmod 644 ~/.ssh/id_rsa.pub
+
 	# enable ssh firewall
 	sudo ufw allow ssh
 	sudo systemctl restart ssh
@@ -80,5 +85,4 @@ bootup() {
 update
 installer
 configure_system
-bootup
-update
+
