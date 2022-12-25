@@ -69,7 +69,7 @@ bootup() {
 	echo "velg nr 5, mobian"
 	sudo update-alternatives --config default.plymouth
 	sudo rm /usr/share/plymouth/themes/mobian/logo.png
-	sudo cp $dir/pictures/picture1.png /usr/share/plymouth/themes/mobian/logo.png
+	sudo cp $dir/pictures/AGRpOz.png /usr/share/plymouth/themes/mobian/logo.png
 	
 	sudo rm /usr/share/plymouth/themes/bgrt/bgrt.plymouth
 	sudo cp $dir/bootup/bgrt.plymouth /usr/share/plymouth/themes/bgrt/bgrt.plymouth
