@@ -33,11 +33,11 @@ configure_system() {
 	git config --global user.name ubunknown1
 	
 	# BOOT
-	sudo rm /usr/share/plymouth/themes/bgrt/bgrt.plymouth
-	sudo cp $dir/bootup/bgrt.plymouth /usr/share/plymouth/themes/bgrt/bgrt.plymouth
-	sudo cp $dir/bootup/linux.png /usr/share/plymouth/themes/spinner/watermark.png
-	sudo rm /usr/share/plymouth/themes/default.plymouth 
-	sudo cp $dir/bootup/default.plymouth /usr/share/plymouth/themes/default.plymouth 
+	#sudo rm /usr/share/plymouth/themes/bgrt/bgrt.plymouth
+	#sudo cp $dir/bootup/bgrt.plymouth /usr/share/plymouth/themes/bgrt/bgrt.plymouth
+	#sudo cp $dir/bootup/linux.png /usr/share/plymouth/themes/spinner/watermark.png
+	#sudo rm /usr/share/plymouth/themes/default.plymouth 
+	#sudo cp $dir/bootup/default.plymouth /usr/share/plymouth/themes/default.plymouth 
 
 	
 	# home files
@@ -63,7 +63,22 @@ configure_system() {
 
 }
 
+bootup() {
+	dir=$(pwd)
+	sudo apt install plymouth*
+	echo "velg nr 5, mobian"
+	sudo update-alternatives --config default.plymouth
+	sudo rm /usr/share/plymouth/themes/mobian/logo.png
+	sudo cp $dir/pictures/picture1.png /usr/share/plymouth/themes/mobian/logo.png
+	
+	sudo rm /usr/share/plymouth/themes/bgrt/bgrt.plymouth
+	sudo cp $dir/bootup/bgrt.plymouth /usr/share/plymouth/themes/bgrt/bgrt.plymouth
+
+	
+}
+
 update
 installer
 configure_system
+bootup
 update
