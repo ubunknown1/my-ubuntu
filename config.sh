@@ -45,11 +45,12 @@ configure_system() {
 	
 	# setup SSH
 	cp -r /media/ko/private2/private-files/ubuntu-secrets/.ssh $HOME
-	
+	ssh-add
 	# enable ssh firewall
 	sudo ufw allow ssh
 	sudo systemctl restart ssh
 	sudo systemctl enable ssh
+
 }
 
 update
