@@ -13,6 +13,8 @@ update() {
 	sudo apt -y full-upgrade &> /dev/null
 	echo "autoremove"
 	sudo apt -y autoremove &> /dev/null
+	echo "update initramfs"
+	sudo update-initramfs -u &> /dev/null
 	echo "clean"
 	sudo apt -y clean &> /dev/null
 	echo ""
@@ -29,6 +31,14 @@ configure_system() {
 	dir=$(pwd)
 	git config --global user.email ubunknown1@protonmail.com
 	git config --global user.name ubunknown1
+	
+	# BOOT
+	sudo rm /usr/share/plymouth/themes/bgrt/bgrt.plymouth
+	sudo cp $dir/bootup/bgrt.plymouth /usr/share/plymouth/themes/bgrt/bgrt.plymouth
+	sudo cp $dir/bootup/linux.png /usr/share/plymouth/themes/spinner/watermark.png
+	sudo rm /usr/share/plymouth/themes/default.plymouth 
+	sudo cp $dir/bootup/default.plymouth /usr/share/plymouth/themes/default.plymouth 
+
 	
 	# home files
 	rm ~/.aliases
@@ -56,3 +66,4 @@ configure_system() {
 update
 installer
 configure_system
+update
