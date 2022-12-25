@@ -36,15 +36,15 @@ configure_system() {
 	cp $dir/home-files/.aliases ~/
 	cp $dir/home-files/.bashrc ~/
 	# setup GPG
-	gpg --import $dir/public.gpg
-	gpg --import $dir/private.gpg
-	gpg --import-ownertrust $dir/trust.gpg
+	gpg --import /media/ko/private2/private-files/ubuntu-secrets/.ssh/ /public.gpg
+	gpg --import /media/ko/private2/private-files/ubuntu-secrets/.ssh/ /private.gpg
+	gpg --import-ownertrust /media/ko/private2/private-files/ubuntu-secrets/.ssh/ /trust.gpg
 	gpg --list-secret-keys --keyid-format LONG
-$ 	chmod 600 ~/.ssh/id_rsa
-$	chmod 644 ~/.ssh/id_rsa.pub
+ 	chmod 600 ~/.ssh/id_rsa
+	chmod 644 ~/.ssh/id_rsa.pub
 	
 	# setup SSH
-	cp /media/ko/private1/private-files/ubuntu-secrets/.ssh/ ~/
+	cp -r /media/ko/private2/private-files/ubuntu-secrets/.ssh/ /home/ko/
 	
 	# enable ssh firewall
 	sudo ufw allow ssh
