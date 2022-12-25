@@ -1,0 +1,25 @@
+# Upgrade
+alias 0='sudo apt update; sudo apt -y full-upgrade; sudo apt -y upgrade; sudo apt -y autoremove; sudo apt -y clean'
+
+# Full Upgrade
+alias 00='sudo apt update; sudo apt -y full-upgrade; sudo apt -y upgrade; sudo apt -y autoremove; sudo apt -y clean; sudo update-grub; sudo update-initramfs -u'
+
+
+# System 
+alias aprove='sudo chmod +x'
+  
+alias x='exit'
+  
+alias c='clear'
+ 
+
+alias ins='sudo apt -y install '
+alias rem='sudo apt -y remove --purge '
+
+alias gpu='sudo prime-select query'
+alias nvidia='sudo prime-select nvidia'
+alias intel='sudo prime-select intel'
+
+alias gitpush='git add . && git commit -m "initial commit"; git push'
+alias restartnet='sudo service NetworkManager restart'
+alias anonymrm='sudo rm /usr/sbin/anonymous; sudo rm /etc/default/ko-anonymous'
