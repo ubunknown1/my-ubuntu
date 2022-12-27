@@ -3,7 +3,7 @@
 
  
 
-packages=$"virt-what nautilus-admin plymouth-themes software-properties-common build-essential gnupg gnupg1 gnupg2 kgpg git gh ubuntu-restricted-extras openssh-client openssh-server ufw guake tor python3.10-full snap snapd timeshift gnome-tweaks gcc g++ openjdk-18-jre-headless gedit macchanger iw bleachbit python3.10-full"
+packages=$"virt-what libglvnd-dev pkg-config nautilus-admin plymouth-themes software-properties-common build-essential gnupg gnupg1 gnupg2 kgpg git gh ubuntu-restricted-extras openssh-client openssh-server ufw guake tor python3.10-full snap snapd timeshift gnome-tweaks gcc g++ openjdk-18-jre-headless gedit macchanger iw bleachbit python3.10-full"
 update() {
 	echo "System update"
 	sudo apt update &> /dev/null
@@ -28,7 +28,6 @@ installer() {
 
 
 configure_system() {
-	gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
 	sudo dpkg --configure -a
 	sudo apt install unattended-upgrades
 	sudo dpkg-reconfigure --priority=low unattended-upgrades
